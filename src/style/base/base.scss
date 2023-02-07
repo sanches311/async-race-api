@@ -1,0 +1,29 @@
+li {
+    text-decoration: none;
+    list-style-type: none;
+}
+hr {
+    margin: 0;
+    border: none;
+
+}
+body {
+    background-color: black;
+}
+span {
+    color: gray;
+}
+button {
+    cursor: pointer;
+}
+table {
+    width: 80%; 
+    border-collapse: collapse;   
+}
+td, tr, caption {
+    padding: 3px; 
+    border: 1px solid green; 
+    color: gray;
+    text-align: center; 
+
+}

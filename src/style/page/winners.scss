@@ -1,0 +1,23 @@
+.winners-pagination {
+    margin-top: 20px;
+}
+.winner-car-img {
+    display: flex;
+    justify-content: center;
+    width: 60px;
+    height: 30px;
+}
+.winner-car-img svg {
+    width: 100%;
+    height: 100%;
+}
+.container-winners-table {
+    display: flex;
+    justify-content: space-around;
+    //align-items: flex-start;
+}
+.winners-tab {
+    display: flex;
+    width: 70%; 
+    justify-content: center;   
+}

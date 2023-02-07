@@ -4,7 +4,7 @@ import GaragePage from './pages/garage';
 import Render from './render';
 import { generateNameCar, generateColor } from './utils';
 import Animate from './animate';
-import { IWin } from './interfaces/interface';
+import { ICars, IWin } from './interfaces/interface';
 import WinnersPage from './pages/winners';
 
 const garagePage = new GaragePage();
@@ -48,14 +48,15 @@ export default class Listen {
             if (target.closest('.edit-remove')) {
                 const carId = Number(target.id.slice(12));
                 await rest.deleteCarGarage(carId);
-                const winners = await (await rest.getWinnersAll()).item;
-                console.log(winners);
-                const winner = winners!.find((winner: IWin) => winner.id === carId);
-                if (winner) {
-                    await rest.deleteCarWinner(carId);
-                }
-                const html: string = await garagePage.getPageGarageHtml();
-                render.render(html);
+                rest.getWinnersAll().then((resp: Array<IWin>) => {
+                    const winner = resp!.find((winner: IWin) => winner.id === carId);
+                    if (winner) {
+                        rest.deleteCarWinner(carId).then(async () => {
+                            const html: string = await garagePage.getPageGarageHtml();
+                            render.render(html);
+                        });
+                    }
+                });
             }
         });
     }

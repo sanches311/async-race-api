@@ -89,8 +89,7 @@ export default class Rest {
     };
     getWinnersAll = async () => {
         const response = await fetch(`${this.baseURl}${this.path.winners}`);
-        const data = await response.json();
-        return data;
+        return await response.json();
     };
     deleteWinner = async (id: number) => {
         const response = await fetch(`${this.baseURl}${this.path.winners}/${id}`, {

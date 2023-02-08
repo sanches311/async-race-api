@@ -22,3 +22,16 @@ export const setColorImg = (img: string, color: string): string => {
     const end = img.indexOf(';', start);
     return `${img.slice(0, start)} fill:${color} ${img.slice(end)}`;
 };
+export const animateFinishLine = (id: number) => {
+    const finish = document.getElementById(`finish-${id}`);
+    const white = finish?.querySelectorAll('.white');
+    const black = finish?.querySelectorAll('.black');
+    white?.forEach((item) => {
+        item.classList.add('white-reverse');
+        item.addEventListener("animationend", () => item.classList.remove('white-reverse'));
+    });
+    black?.forEach((item) => {
+        item.classList.add('black-reverse');
+        item.addEventListener("animationend", () => item.classList.remove('black-reverse'));
+    });
+};

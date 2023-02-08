@@ -1,3 +1,17 @@
-.modal {
-    display: none;
+#modal {
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-window {
+    background: red;
+    font: 1.5em sans-serif;
+    border-radius: 5px;
+    padding: 5px;  
 }

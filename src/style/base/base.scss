@@ -25,5 +25,25 @@ td, tr, caption {
     border: 1px solid green; 
     color: gray;
     text-align: center; 
-
 }
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    //background: #fff;
+    //width: 150px;
+    height: 21.2px;
+    border-radius: 2%;
+    //overflow: hidden;
+    //outline: none;
+    cursor: inherit;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  input:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: goldenrod;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(228, 7, 7, 0.25);
+  }

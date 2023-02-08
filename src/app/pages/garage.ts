@@ -31,12 +31,12 @@ export default class GaragePage {
         <div id='garage'>
             <div class='control'>
                 <div class='create'>
-                    <input class='create-name'></input>
+                    <input class='create-name' type='text'></input>
                     <input type='color'class='create-color'></input>
                     <button class='create-btn'>create</button>
                 </div>
                 <div class='update'>
-                    <input class='update-name'></input>
+                    <input class='update-name' type='text'></input>
                     <input type='color'class='update-color'></input>
                     <button class='update-btn'>update</button>
                 </div> 

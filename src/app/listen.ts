@@ -6,6 +6,8 @@ import { generateNameCar, generateColor } from './utils';
 import Animate from './animate';
 import { ICars, IWin } from './interfaces/interface';
 import WinnersPage from './pages/winners';
+import Modal from './modal';
+import { animateFinishLine } from './utils';
 
 const garagePage = new GaragePage();
 
@@ -48,13 +50,12 @@ export default class Listen {
             if (target.closest('.edit-remove')) {
                 const carId = Number(target.id.slice(12));
                 await rest.deleteCarGarage(carId);
+                const html: string = await garagePage.getPageGarageHtml();
+                render.render(html);
                 rest.getWinnersAll().then((resp: Array<IWin>) => {
                     const winner = resp!.find((winner: IWin) => winner.id === carId);
                     if (winner) {
-                        rest.deleteCarWinner(carId).then(async () => {
-                            const html: string = await garagePage.getPageGarageHtml();
-                            render.render(html);
-                        });
+                        rest.deleteCarWinner(carId);
                     }
                 });
             }
@@ -217,6 +218,7 @@ export default class Listen {
                         animate.success = resp.success;
                         countCarEndRace += 1;
                         if (resp.success === true) {
+                            animateFinishLine(id);
                             if (!winnerRace.time) {
                                 winnerRace.time = Number(duration.toFixed(0));
                                 winnerRace.id = id;
@@ -226,8 +228,12 @@ export default class Listen {
                             }
                         }
                         if (carsArr.length === countCarEndRace) {
+                            const name = document.getElementById(`car-name-${winnerRace.id}`)!.textContent;
+                            const modal = new Modal(name!, winnerRace.time!);
+                            modal.render();
+                            modal.remove();
                             rest.getWinnersAll().then((resp) => {
-                                console.log(resp);
+                                console.log(winnerRace);
                                 const winner = resp.find((winnner: IWin) => winnner.id === winnerRace.id);
                                 if (winner) {
                                     rest.updateWinner(winnerRace.id!, {
@@ -262,4 +268,5 @@ export default class Listen {
             }
         });
     }
+
 }
